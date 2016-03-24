@@ -1,0 +1,33 @@
+group 'com.selonj'
+version '1.0'
+
+apply plugin: 'java'
+
+def jdkVersion = 1.7
+sourceCompatibility = jdkVersion
+targetCompatibility = jdkVersion
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+}
+
+dependencies {
+    testCompile('junit:junit:4.+') {
+        exclude group: 'org.hamcrest'
+    }
+    testCompile 'org.hamcrest:hamcrest-library:1.+'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+apply plugin: 'idea'
+idea {
+    module {
+        excludeDirs = [file('.idea'), file('.gradle'), file('gradle')]
+        downloadSources = false
+    }
+}
