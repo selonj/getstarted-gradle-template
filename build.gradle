@@ -20,8 +20,12 @@ dependencies {
     testCompile 'org.hamcrest:hamcrest-library:1.+'
 }
 
+def fileEncoding = 'UTF-8'
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+  options.encoding = fileEncoding
+}
+test {
+  systemProperty('file.encoding', fileEncoding)
 }
 
 apply plugin: 'idea'
